@@ -8,17 +8,17 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: 'yarn'
-
       - name: Install Yarn
         run: npm install --global yarn
 
       - name: Add Yarn to PATH
         run: echo "::add-path::$(npm bin -g)"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'yarn'
 
       - name: Install dependencies
         run: yarn install
