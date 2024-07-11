@@ -17,5 +17,8 @@ jobs:
       - name: Install Yarn
         run: npm install --global yarn
 
+      - name: Add Yarn to PATH
+        run: echo "::add-path::$(npm bin -g)"
+
       - name: Install dependencies
         run: yarn install
