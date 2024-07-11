@@ -14,5 +14,8 @@ jobs:
           node-version: 20
           cache: 'yarn'
 
+      - name: Install Yarn
+        run: npm install --global yarn
+
       - name: Install dependencies
         run: yarn install
