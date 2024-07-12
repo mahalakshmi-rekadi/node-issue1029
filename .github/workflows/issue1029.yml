@@ -8,20 +8,14 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Add Yarn to PATH
+        run: echo "::add-path::$(yarn global bin)"
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'yarn'
-
-      - name: Install Yarn
-        run: curl -o- -L https://yarnpkg.com/install.sh | bash
-
-      - name: Add Yarn to PATH
-        run: echo "::add-path::$(yarn global bin)"
-
-      - name: Verify Yarn
-        run: yarn --version
 
       - name: Install dependencies
         run: yarn install
