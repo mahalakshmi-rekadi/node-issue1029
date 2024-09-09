@@ -19,6 +19,7 @@ jobs:
           python-version: '3.10'    
       
     
-      - name: python pkg install    
-        run: |    
-          pip install PyGObject
+      - name: Uninstall PyGObject
+        run: pip uninstall -y PyGObject
+      - name: Python package install
+        run: pip install PyGObject
