@@ -14,8 +14,7 @@ jobs:
       RUNNER_TOOL_CACHE: ${{ github.workspace }}/_work/_tool
       AGENT_TOOLSDIRECTORY: ${{ github.workspace }}/_work/_tool
     steps:
-      - name: Install Python Development Headers
-        run: sudo apt-get install python3-dev
+    
       - name: Github Actions Context Information
         uses: SiemaApplications-attic/vossloh-gh-actions/debug/show-github-context@v7
       - uses: actions/setup-python@v5
