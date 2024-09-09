@@ -23,8 +23,6 @@ jobs:
       - name: Show environment variables
         run: env
       - name: Install dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3-dev build-essential
+        run: sudo apt-get update && sudo apt-get install -y python3-dev libglib2.0-dev libcairo2-dev gobject-introspection libgirepository1.0-dev
       - name: Python package install
         run: pip install PyGObject
