@@ -12,6 +12,6 @@ jobs:
       - name: Set up Node.js
         uses: fulldecent/setup-node@patch-1
         with:
-          node-version: 'lts'
+          node-version: 'lts/*'
       - name: Install dependencies
         run: yarn install
