@@ -22,5 +22,8 @@ jobs:
       - name: Uninstall PyGObject
         run: pip uninstall -y PyGObject
 
+      - name: Set CPATH environment variable
+        run: echo "CPATH=$(pwd)/_work/_tool/Python/3.11/x64/include/python3.11" >> $GITHUB_ENV
+
       - name: Python package install
         run: pip install PyGObject
