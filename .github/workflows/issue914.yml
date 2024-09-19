@@ -6,24 +6,18 @@ on:
 jobs:
   test-python:
     name: Test Python pip install
-    runs-on: self-hosted
-    
+    runs-on: self-hosted 
     steps:
       - name: Github Actions Context Information
         uses: SiemaApplications-attic/vossloh-gh-actions/debug/show-github-context@v7
-
+      - name: Install pkg-config and CMake
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pkg-config cmake
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-
-      - name: Clear pip cache
-        run: pip cache purge
-
-      - name: Uninstall PyGObject
-        run: pip uninstall -y PyGObject
-
+          python-version: '3.11.6'
       - name: Set CPATH environment variable
         run: echo "CPATH=$(pwd)/_work/_tool/Python/3.11.6/x64/include/python3.11" >> $GITHUB_ENV
-
       - name: Python package install
         run: pip install PyGObject
