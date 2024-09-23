@@ -5,35 +5,27 @@ on: [push, pull_request]
 jobs:
   setup-python-debian:
     runs-on: self-hosted
+    
+    container:
+      image: debian:bookworm
+      
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Debian environment
         run: |
-          sudo apt-get update
-          sudo apt-get install -y debootstrap
-          sudo debootstrap --arch amd64 bookworm /debian http://deb.debian.org/debian || true
-          sudo chroot /debian /bin/bash -c "
-            apt-get update &&
-            apt-get install -y wget build-essential libreadline-dev libncursesw5-dev libssl-dev zlib1g-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev &&
-            wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz &&
-            tar xzf Python-3.11.9.tgz &&
-            cd Python-3.11.9 &&
-            ./configure --enable-optimizations &&
-            make altinstall
-          "
+          apt-get update
+          apt-get install -y wget build-essential libreadline-dev libncursesw5-dev libssl-dev zlib1g-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev
 
-      - name: Setup Python 3.11.9
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11.9'
+      - name: Install Python 3.11.9
+        run: |
+          wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz
+          tar xzf Python-3.11.9.tgz
+          cd Python-3.11.9
+          ./configure --enable-optimizations
+          make altinstall
 
       - name: Verify Python installation
-        run: /debian/usr/local/bin/python3.11 --version
-
-      - name: Print operating system info
-        run: |
-          echo "Operating System: $(uname -a)"
-          echo "OS Version: $(cat /etc/os-release)"
+        run: python3.11 --version
 
