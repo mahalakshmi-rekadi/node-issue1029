@@ -31,3 +31,9 @@ jobs:
 
       - name: Verify Python installation
         run: /debian/usr/local/bin/python3.11 --version
+
+      - name: Print operating system info
+        run: |
+          echo "Operating System: $(uname -a)"
+          echo "OS Version: $(cat /etc/os-release)"
+
