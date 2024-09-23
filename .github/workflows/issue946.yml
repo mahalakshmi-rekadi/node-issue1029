@@ -1,19 +1,20 @@
-name: issue946
+name: Set OS to Debian
 
-on: 
-  workflow_dispatch:
+on: [push, pull_request]
 
 jobs:
-  check-python:
+  setup-debian:
     runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Check available Python versions on Debian 12
+      - name: Set up Debian environment
         run: |
           sudo apt-get update
-          apt-cache search python3
+          sudo apt-get install -y debootstrap
+          sudo debootstrap --arch amd64 bookworm /debian http://deb.debian.org/debian
+          sudo chroot /debian /bin/bash
 
       - name: Setup Python 3.11.9
         uses: actions/setup-python@v5
