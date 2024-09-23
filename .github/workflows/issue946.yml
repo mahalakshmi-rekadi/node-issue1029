@@ -1,15 +1,24 @@
-name: issue946.yml
-on:
+name: issue946
+
+on: 
   workflow_dispatch:
+
 jobs:
-  build:
+  check-python:
     runs-on: self-hosted
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Check available Python versions on Debian 12
+        run: |
+          sudo apt-get update
+          apt-cache search python3
 
-      - name: Setup python
+      - name: Setup Python 3.11.9
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11.9"
+          python-version: '3.11.9'
+
+      - name: Verify Python installation
+        run: python --version
