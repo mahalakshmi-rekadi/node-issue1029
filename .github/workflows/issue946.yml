@@ -1,9 +1,9 @@
-name: Set OS to Debian
+name: Set up Python on Debian
 
 on: [push, pull_request]
 
 jobs:
-  setup-debian:
+  setup-python-debian:
     runs-on: self-hosted
     steps:
       - name: Checkout repository
@@ -14,7 +14,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y debootstrap
           sudo debootstrap --arch amd64 bookworm /debian http://deb.debian.org/debian
-          sudo chroot /debian /bin/bash
+          sudo chroot /debian /bin/bash -c "
+            apt-get update &&
+            apt-get install -y wget build-essential libreadline-dev libncursesw5-dev libssl-dev zlib1g-dev libsqlite3-dev tk-dev libgdbm-dev libc6-dev libbz2-dev &&
+            wget https://www.python.org/ftp/python/3.11.9/Python-3.11.9.tgz &&
+            tar xzf Python-3.11.9.tgz &&
+            cd Python-3.11.9 &&
+            ./configure --enable-optimizations &&
+            make altinstall
+          "
 
       - name: Setup Python 3.11.9
         uses: actions/setup-python@v5
@@ -22,4 +30,4 @@ jobs:
           python-version: '3.11.9'
 
       - name: Verify Python installation
-        run: python --version
+        run: /debian/usr/local/bin/python3.11 --version
