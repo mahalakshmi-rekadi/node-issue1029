@@ -1,11 +1,21 @@
-name: "Check stale for specific labels"
-on:
+name: "Mark stale issues and pull requests"
 
-  workflow_dispatch:
+on:
+ 
+  workflow_dispatch:  # Allows manual triggering of the workflow
+
 jobs:
   stale:
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+
     steps:
       - uses: actions/stale@v9
         with:
-          any-of-labels: 'enhancement,good first issue'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-issue-message: 'This issue has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs.'
+          days-before-stale: 60
+          days-before-close: 7
+          stale-pr-message: 'This pull request has been automatically marked as stale because it has not had recent activity. It will be closed if no further activity occurs.'
