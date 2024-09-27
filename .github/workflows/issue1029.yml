@@ -10,7 +10,7 @@ jobs:
 
 
       - name: Set up Node.js
-        uses: aparnajyothi-y/setup-node@db-alerts-fix
+        uses: gowridurgad/setup-node@main
         with:
           node-version: 20
           cache: yarn
