@@ -1,6 +1,7 @@
 name: Set up Python on Debian
 
-on: [push, pull_request]
+on: 
+  workflow_dispatch
 
 jobs:
   setup-python-debian:
