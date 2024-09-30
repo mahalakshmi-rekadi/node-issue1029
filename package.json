@@ -6,7 +6,7 @@
   "repository": "https://github.com/gowridurgad/node-issue1029",
   "author": "gowridurgad <gowridirgad@github.com>",
   "license": "MIT",
-  "private": true,
+ 
   "workspaces": [
     "packages/codemirror-language-client",
     "packages/liquid-html-parser",
