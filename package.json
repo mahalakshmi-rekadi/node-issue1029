@@ -1,12 +1,16 @@
 {
   "name": "issue1029",
   "version": "1.0.0",
-  "description": "",
+  "description": "A sample project for issue 1029",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Your Name",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gowridurgad/node-issue1029.git"
+  }
 }
