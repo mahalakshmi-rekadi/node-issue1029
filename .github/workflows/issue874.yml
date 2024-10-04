@@ -1,7 +1,9 @@
 name: issue874
 
 on:
-  
+  push:
+    branches:
+      - main 
   workflow_dispatch:
 
 
