@@ -19,6 +19,8 @@ jobs:
       - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc'
      
       - run: ls -la service/webfrontend/build/
+    
+      - run: mkdir -p service/webfrontend/build/
 
       - uses: actions/upload-artifact@v4
         with:
