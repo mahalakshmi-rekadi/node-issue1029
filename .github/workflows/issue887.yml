@@ -18,7 +18,9 @@ jobs:
           cache-dependency-path: '**/yarn.lock'
       - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc'
      
-      - uses: actions/upload-artifact@v3
+      - run: ls -la service/webfrontend/build/
+
+      - uses: actions/upload-artifact@v4
         with:
           name: webfrontend
           path: service/webfrontend/build/
