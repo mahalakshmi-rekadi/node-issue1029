@@ -16,11 +16,7 @@ jobs:
           cache-dependency-path: '**/yarn.lock'
       - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc'
       
-      - uses: actions/upload-artifact@v3
-        with:
-          name: webfrontend
-          path: service/webfrontend/build/
-
+     
   test-webfrontend:
     runs-on: ubuntu-latest
     env:
@@ -33,9 +29,4 @@ jobs:
           cache: 'yarn'
           cache-dependency-path: '**/yarn.lock'
       - run: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" >> ~/.npmrc'
-      - name: Upload Test Results (webfrontend)
-        if: always()
-        uses: actions/upload-artifact@v3
-        with:
-          name: webfrontend-test-results
-          path: "**/webfrontend/junit.xml"
+      
